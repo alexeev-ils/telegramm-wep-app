@@ -37,7 +37,7 @@
     avatarImg.src = tg.initDataUnsafe.user.photo_url;
     document.querySelector('.id').textContent = tg.initDataUnsafe.user.id;
     document.querySelector('.username').textContent = tg.initDataUnsafe.user.username;
-    document.querySelector('.obj').textContent = JSON.stringify();
+    document.querySelector('.obj').textContent = tg.initDataUnsafe.JSON.stringify();
 
 
     const params = (new URL(location.href)).searchParams;
