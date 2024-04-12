@@ -16,10 +16,7 @@
   <div class="root">
     <div class="container">
       <h1>Welcome to telegramm mini apps!!!</h1>
-      <div>photourl</div>
-      <div class="photourl">
-        -
-      </div>
+
       <span class="label">ID пользователя: </span>
       <div class="id">-</div>
       <span class="label">Username пользователя: </span>
@@ -43,9 +40,6 @@
     const latitude = params.get('latitude');
     const longitude = params.get('longitude');
     document.querySelector('.coords').textContent = `Широта: ${latitude} | Долгота: ${longitude}`;
-
-    document.querySelector('.photourl').textContent = tg.initDataUnsafe.user.photo_url;
-
   </script>
 </body>
 
