@@ -1,4 +1,5 @@
 .root {
+    padding: 10px;
     background-color: #F0F8FF;
     color: #333333;
     text-align: center;
@@ -28,4 +29,8 @@
 
 .label {
     font-weight: 600;
+}
+
+.obj {
+    word-wrap: break-word;
 }
