@@ -1,18 +1,28 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
 .root {
-    padding: 10px;
+    /* padding: 10px; */
     background-color: #F0F8FF;
     color: #333333;
     text-align: center;
     font-family: "Sedan", serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
+    max-width: 100vw;
+    overflow: hidden;
     width: 100vw;
     height: 100vh;
+}
+
+.container {
+    /* padding: 10px; */
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 20px;
+    gap: 10px;
 }
 
 .avatar-wrapper {
@@ -32,5 +42,5 @@
 }
 
 .obj {
-    word-wrap: break-word;
+    word-break: break-word;
 }
