@@ -16,9 +16,6 @@
   <div class="root">
     <div class="container">
       <h1>Welcome to telegramm mini apps!!!</h1>
-      <div class="avatar-wrapper">
-        <img src="#" id="ava" alt="telegramm avatar" />
-      </div>
       <span class="label">ID пользователя: </span>
       <div class="id">-</div>
       <span class="label">Username пользователя: </span>
@@ -29,23 +26,24 @@
       <div class="obj">
         -
       </div>
+      <div class="photourl">
+        -
+      </div>
     </div>
   </div>
 
   <script>
     const tg = window.Telegram.WebApp;
-    const avatarImg = document.getElementById('ava');
-
-    avatarImg.src = tg.initDataUnsafe.user.photo_url;
     document.querySelector('.id').textContent = tg.initDataUnsafe.user.id;
     document.querySelector('.username').textContent = tg.initDataUnsafe.user.username;
-    document.querySelector('.obj').textContent = tg.initDataUnsafe.JSON.stringify();
-
+    document.querySelector('.obj').textContent = JSON.stringify(tg.initDataUnsafe);
 
     const params = (new URL(location.href)).searchParams;
     const latitude = params.get('latitude');
     const longitude = params.get('longitude');
     document.querySelector('.coords').textContent = `Широта: ${latitude} | Долгота: ${longitude}`;
+
+    document.querySelector('.photourl').textContent = tg.initDataUnsafe.user.photo_url;
 
   </script>
 </body>
