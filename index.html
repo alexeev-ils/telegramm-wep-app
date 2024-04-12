@@ -4,33 +4,67 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sedan:ital@0;1&display=swap" rel="stylesheet">
   <title>Document</title>
+  <link rel="stylesheet" href="./main.css">
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 
 <body>
-  <span>ID: </span>
-  <div class="id"></div>
-  <span>Username: </span>
-  <div class="username"></div>
-  <span>Объект пользователя: </span>
-  <div class="obj"></div>
-  <span>Координаты:</span>
-  <div class="coords"></div>
-  
+  <div class="root">
+    <h1>Welcome to telegramm mini apps!!!</h1>
+    <div class="avatar-wrapper">
+      <img src="#" id="ava" alt="tg avatar" />
+    </div>
+    <span class="label">Ваш ID: </span>
+    <div class="id"></div>
+    <span class="label">Ваш Username: </span>
+    <div class="username"></div>
+    <span class="label">Указанные координаты пользователем:</span>
+    <div class="coords"></div>
+    <span class="label">Объект пользователя: </span>
+    <pre class="obj"></pre>
+  </div>
+
   <script>
     const tg = window.Telegram.WebApp;
-    console.log(tg.initDataUnsafe.user.username);
-    console.log(tg.initDataUnsafe.user);
-    console.log(tg.initDataUnsage);
+    const avatarImg = document.getElementById('ava');
+
     document.querySelector('.id').textContent = tg.initDataUnsafe.user.id;
     document.querySelector('.username').textContent = tg.initDataUnsafe.user.username;
     document.querySelector('.obj').textContent = JSON.stringify(tg.initDataUnsafe);
+
     const params = (new URL(location.href)).searchParams;
     const latitude = params.get('latitude');
     const longitude = params.get('longitude');
     document.querySelector('.coords').textContent = `Широта: ${latitude} | Долгота: ${longitude}`;
-    
+
+
+    const userId = tg.initDataUnsafe.user.id;
+
+
+
+    // Вызываем метод API для получения профиля пользователя
+    tg.api.getUserProfilePhotos({ user_id: userId, limit: 1 })
+      .then((response) => {
+        if (response.total_count > 0) {
+          const photo = response.photos[0][0];
+          const photoFileId = photo.file_id;
+          const photoUrl = tg.api.getFileLink(photoFileId);
+
+          avatarImg.src = photoUrl;
+          console.log('URL аватарки пользователя:', photoUrl);
+        } else {
+          avatarImg.src = 'https://imebehavioralhealth.com/wp-content/uploads/2021/10/user-icon-placeholder-1.png'
+          console.log('Пользователь не имеет аватарки');
+        }
+      })
+      .catch((error) => {
+        console.error('Ошибка при получении информации о пользователе:', error);
+      });
+
   </script>
 </body>
 
